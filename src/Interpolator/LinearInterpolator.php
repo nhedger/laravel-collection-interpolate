@@ -90,17 +90,19 @@ class LinearInterpolator
                 }
 
                 // Retrieve the preceding non-null neighbour
-                $previousIndex = $originalIndices->search($nullIndexWithNeighbours['previousIndex']);
+                $previousIndex = $nullIndexWithNeighbours['previousIndex'];
+                $previousOriginalIndex = $originalIndices->get($previousIndex);
                 $previousValue = match(is_null($valuePath)) {
-                    true => $collection->get($previousIndex),
-                    false => data_get($collection->get($previousIndex), $valuePath),
+                    true => $collection->get($previousOriginalIndex),
+                    false => data_get($collection->get($previousOriginalIndex), $valuePath),
                 };
 
                 // Retrieve the following non-null neighbour
-                $nextIndex = $originalIndices->search($nullIndexWithNeighbours['nextIndex']);
+                $nextIndex = $nullIndexWithNeighbours['nextIndex'];
+                $nextOriginalIndex = $originalIndices->get($nextIndex);
                 $nextValue = match(is_null($valuePath)) {
-                    true => $collection->get($nextIndex),
-                    false => data_get($collection->get($nextIndex), $valuePath),
+                    true => $collection->get($nextOriginalIndex),
+                    false => data_get($collection->get($nextOriginalIndex), $valuePath),
                 };
 
                 // Compute the distance between the item its neighbouring items

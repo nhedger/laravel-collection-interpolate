@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 class LinearInterpolatorTest extends TestCase
 {
     #[Test]
-    public function it_ensures_that_all_non_null_items_have_a_numeric_value(): void
+    public function it_ensures_that_all_non_null_items_have_a_number_value(): void
     {
         // Arrange
         $collection = collect([1, 2, '3', 4, 5]);
@@ -62,7 +62,7 @@ class LinearInterpolatorTest extends TestCase
     }
 
     #[Test]
-    public function it_interpolates_the_values_of_a_string_indexed_collection()
+    public function it_interpolates_the_values_of_a_non_numerically_indexed_collection()
     {
         // Arrange
         $collection = collect([
