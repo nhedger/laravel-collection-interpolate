@@ -152,7 +152,7 @@ $values->all();
 //     ['data' => ['timestamp' => '2025-01-03', 'reading' => 3.0]],
 //     ['data' => ['timestamp' => '2025-01-04', 'reading' => 4]],
 // ]
-```https://banners.beyondco.de/interpolate()%20for%20Collections.png?theme=light&packageManager=composer+require&packageName=hedger%2Flaravel-collection-interpolate&pattern=architect&style=style_1&description=Linear+and+time-aware+interpolation+method+for+Laravel+Collections&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg&widths=400&heights=800
+```
 
 ## License
 
