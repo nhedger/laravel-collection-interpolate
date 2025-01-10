@@ -1,3 +1,5 @@
+![](img.svg)
+
 # Laravel Collection Interpolate
 
 This humble Laravel package extends Laravel's built-in Collection methods with
