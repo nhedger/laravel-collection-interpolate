@@ -61,11 +61,7 @@ provide more accurate interpolations in temporal contexts.
 > If your collection is not keyed by timestamps, use the `sortBy` method
 > to sort the collection by the timestamp field before calling `interpolate`.
 
-> [!NOTE]
-> When using time-aware interpolation, timestamps should either be strings that
-> can be parsed into Carbon instances, or DateTimeInterface instances. When the
-> collection is keyed by timestamp, you MUST use strings because PHP arrays cannot
-> be indexed by DateTimeInterface instances.
+
 ```php
 $values = collect([
     [Carbon::parse('2025-01-01') => 1],
@@ -75,6 +71,12 @@ $values = collect([
 ])->sortKeys()
   ->interpolate(mode: 'time');
 ```
+
+> [!NOTE]
+> When using time-aware interpolation, timestamps should either be strings that
+> can be parsed into Carbon instances, or DateTimeInterface instances. When the
+> collection is keyed by timestamp, you MUST use strings because PHP arrays cannot
+> be indexed by DateTimeInterface instances.
 
 #### Complex value objects
 
