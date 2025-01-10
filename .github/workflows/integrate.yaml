@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest]
         php: [8.4, 8.3, 8.2, 8.1, 8.0]
         laravel: ["11.*", "10.*", "9.*"]
         stability: [prefer-lowest, prefer-stable]
