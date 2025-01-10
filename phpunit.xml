@@ -7,12 +7,12 @@
     failOnRisky="true"
     failOnWarning="true">
     <testsuites>
-        <testsuite name="default">
+        <testsuite name="Unit Tests">
             <directory>tests/Unit</directory>
         </testsuite>
     </testsuites>
 
-    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
+    <source>
         <include>
             <directory>src</directory>
         </include>
