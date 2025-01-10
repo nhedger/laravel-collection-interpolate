@@ -22,7 +22,7 @@ jobs:
           - laravel: "11.*"
             testbench: "^9.0"
           - laravel: "10.*"
-            testbench: "^8.31"
+            testbench: "^8.0"
           - laravel: "9.*"
             testbench: "^7.50"
         exclude:
