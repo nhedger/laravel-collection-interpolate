@@ -49,8 +49,8 @@ jobs:
         with:
           dependency-versions: ${{ matrix.dependencies }}
       - name: Override Laravel
-        run: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-update
+        run: composer require "laravel/framework:${{ matrix.laravel }}.*"
       - name: Override Orchestra Testbench
-        run: composer require "orchestra/testbench:${{ matrix.testbench }}.*" --no-update
+        run: composer require "orchestra/testbench:${{ matrix.testbench }}.*"
       - name: Run tests
         run: vendor/bin/phpunit
