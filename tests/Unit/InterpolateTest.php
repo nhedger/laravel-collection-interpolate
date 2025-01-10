@@ -21,8 +21,4 @@ class InterpolateTest extends TestCase
         // Assert
         $this->assertEquals([1, 2, 3, 4, 5], $result->all());
     }
-
-
-
-
 }
