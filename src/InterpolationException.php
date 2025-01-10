@@ -10,4 +10,9 @@ class InterpolationException extends Exception
     {
         return new self('All non-null items must be numbers (int or float).');
     }
+
+    public static function invalidTimestampFormat(): self
+    {
+        return new self('Timestamps must be instances of DateTimeInterface.');
+    }
 }

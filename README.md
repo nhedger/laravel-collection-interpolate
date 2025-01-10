@@ -61,23 +61,18 @@ provide more accurate interpolations in temporal contexts.
 > If your collection is not keyed by timestamps, use the `sortBy` method
 > to sort the collection by the timestamp field before calling `interpolate`.
 
+> [!NOTE] Use Carbon instances for timestamps.
+> When using time-aware interpolation, timestamps should be instances of `DateTimeInterface`.
+> This means that ou can also use Carbon instance directly, as Carbon implements the `DateTimeInterface` interface.
+
 ```php
 $values = collect([
-    ['2025-01-01' => 1],
-    ['2025-01-02' => 2],
-    ['2025-01-04' => null],
-    ['2025-01-05' => 5],
+    [Carbon::parse('2025-01-01') => 1],
+    [Carbon::parse('2025-01-02') => 2],
+    [Carbon::parse('2025-01-04') => null],
+    [Carbon::parse('2025-01-05') => 5],
 ])->sortKeys()
   ->interpolate(mode: 'time');
-
-$values->all(); 
-
-// [
-//     ['timestamp' => '2021-01-01', 'value' => 1],
-//     ['timestamp' => '2021-01-02', 'value' => 2],
-//     ['timestamp' => '2021-01-04', 'value' => 4],
-//     ['timestamp' => '2021-01-05', 'value' => 5],
-// ]
 ```
 
 #### Complex value objects
@@ -88,10 +83,10 @@ value itself, but a deeply nested field within a value object.
 
 ```php
 $values = collect([
-    ['2025-01-01' => ['data' => ['reading' => 1]]],
-    ['2025-01-02' => ['data' => ['reading' => 2]]],
-    ['2025-01-04' => ['data' => ['reading' => null]]],
-    ['2025-01-05' => ['data' => ['reading' => 5]]],
+    [Carbon::parse('2025-01-01') => ['data' => ['reading' => 1]]],
+    [Carbon::parse('2025-01-02') => ['data' => ['reading' => 2]]],
+    [Carbon::parse('2025-01-04') => ['data' => ['reading' => null]]],
+    [Carbon::parse('2025-01-05') => ['data' => ['reading' => 5]]],
 ])->sortKeys()
   ->interpolate(
       mode: 'time', 
@@ -107,10 +102,10 @@ the timestamps are stored within a value object, you can specify a custom
 
 ```php
 $values = collect([
-    ['data' => ['timestamp' => '2025-01-01', 'reading' => 1]],
-    ['data' => ['timestamp' => '2025-01-02', 'reading' => 2]],
-    ['data' => ['timestamp' => '2025-01-04', 'reading' => null]],
-    ['data' => ['timestamp' => '2025-01-05', 'reading' => 5]],
+    ['data' => ['timestamp' => Carbon::parse('2025-01-01'), 'reading' => 1]],
+    ['data' => ['timestamp' => Carbon::parse('2025-01-02'), 'reading' => 2]],
+    ['data' => ['timestamp' => Carbon::parse('2025-01-04'), 'reading' => null]],
+    ['data' => ['timestamp' => Carbon::parse('2025-01-05'), 'reading' => 5]],
 ])->sortBy('data.timestamp')
   ->interpolate(
       mode: 'time', 

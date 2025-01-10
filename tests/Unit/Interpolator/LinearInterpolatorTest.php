@@ -100,7 +100,7 @@ class LinearInterpolatorTest extends TestCase
     }
 
     #[Test]
-    public function it_does_not_interpolate_the_values_of_null_items_that_are_not_surrounded_by_non_null_items(): void
+    public function it_does_not_interpolate_the_values_of_null_items_that_do_not_have_two_neighbours(): void
     {
         // Arrange
         $collection = collect([null, 3, null, 5]);
