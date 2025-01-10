@@ -1,4 +1,4 @@
-![](img.svg)
+![](banner.png)
 
 # Laravel Collection Interpolate
 
@@ -28,7 +28,9 @@ It's simple and effective for scenarios without a time-based component.
 ```php
 $values = collect([1, 2, null, 4, 5])->interpolate();
 
-$values->all(); // [1, 2, 3, 4, 5]
+$values->all(); 
+
+// [1, 2, 3, 4, 5]
 ```
 
 #### Complex value objects
@@ -45,6 +47,16 @@ $values = collect([
     ['data' => ['reading' => 4]],
     ['data' => ['reading' => 5]],
 ])->interpolate(valuePath: 'data.reading');
+
+$values->all();
+
+// [
+//     ['data' => ['reading' => 1]],
+//     ['data' => ['reading' => 2]],
+//     ['data' => ['reading' => 3]],
+//     ['data' => ['reading' => 4]],
+//     ['data' => ['reading' => 5]],
+// ]
 ```
 
 ### Time-aware interpolation
@@ -61,15 +73,22 @@ provide more accurate interpolations in temporal contexts.
 > If your collection is not keyed by timestamps, use the `sortBy` method
 > to sort the collection by the timestamp field before calling `interpolate`.
 
-
 ```php
 $values = collect([
-    [Carbon::parse('2025-01-01') => 1],
-    [Carbon::parse('2025-01-02') => 2],
-    [Carbon::parse('2025-01-04') => null],
-    [Carbon::parse('2025-01-05') => 5],
-])->sortKeys()
-  ->interpolate(mode: 'time');
+    '2025-01-01' => 1,
+    '2025-01-02' => 2,
+    '2025-01-03' => null,
+    '2025-01-04' => 4,
+])->sortKeys()->interpolate(mode: 'time');
+
+$values->all();
+
+// [
+//     '2025-01-01' => 1,
+//     '2025-01-02' => 2,
+//     '2025-01-03' => 3.0,
+//     '2025-01-04' => 4,
+// ]
 ```
 
 > [!NOTE]
@@ -86,15 +105,24 @@ value itself, but a deeply nested field within a value object.
 
 ```php
 $values = collect([
-    [Carbon::parse('2025-01-01') => ['data' => ['reading' => 1]]],
-    [Carbon::parse('2025-01-02') => ['data' => ['reading' => 2]]],
-    [Carbon::parse('2025-01-04') => ['data' => ['reading' => null]]],
-    [Carbon::parse('2025-01-05') => ['data' => ['reading' => 5]]],
+    '2025-01-01' => ['data' => ['reading' => 1]],
+    '2025-01-02' => ['data' => ['reading' => 2]],
+    '2025-01-03' => ['data' => ['reading' => null]],
+    '2025-01-04' => ['data' => ['reading' => 4]],
 ])->sortKeys()
   ->interpolate(
       mode: 'time', 
       valuePath: 'data.reading',
   );
+
+$values->all();
+
+// [
+//     '2025-01-01' => ['data' => ['reading' => 1]],
+//     '2025-01-02' => ['data' => ['reading' => 2]],
+//     '2025-01-03' => ['data' => ['reading' => 3.0]],
+//     '2025-01-04' => ['data' => ['reading' => 4]],
+// ]
 ```
 
 #### Custom timestamp field
@@ -108,14 +136,23 @@ $values = collect([
     ['data' => ['timestamp' => Carbon::parse('2025-01-01'), 'reading' => 1]],
     ['data' => ['timestamp' => Carbon::parse('2025-01-02'), 'reading' => 2]],
     ['data' => ['timestamp' => Carbon::parse('2025-01-04'), 'reading' => null]],
-    ['data' => ['timestamp' => Carbon::parse('2025-01-05'), 'reading' => 5]],
+    ['data' => ['timestamp' => Carbon::parse('2025-01-04'), 'reading' => 4]],
 ])->sortBy('data.timestamp')
   ->interpolate(
       mode: 'time', 
       valuePath: 'data.reading',
       timePath: 'data.timestamp',
 );
-```
+
+$values->all();
+
+// [
+//     ['data' => ['timestamp' => '2025-01-01', 'reading' => 1]],
+//     ['data' => ['timestamp' => '2025-01-02', 'reading' => 2]],
+//     ['data' => ['timestamp' => '2025-01-03', 'reading' => 3.0]],
+//     ['data' => ['timestamp' => '2025-01-04', 'reading' => 4]],
+// ]
+```https://banners.beyondco.de/interpolate()%20for%20Collections.png?theme=light&packageManager=composer+require&packageName=hedger%2Flaravel-collection-interpolate&pattern=architect&style=style_1&description=Linear+and+time-aware+interpolation+method+for+Laravel+Collections&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg&widths=400&heights=800
 
 ## License
 
