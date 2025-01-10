@@ -1,9 +1,9 @@
 {
 	"name": "hedger/laravel-collection-interpolate",
-	"description": "Linear and time-aware interpolation for Laravel Collections",
+	"description": "Linear and time-aware interpolation method for Laravel Collections",
 	"type": "library",
 	"require": {
-		"illuminate/support": "^11.37"
+		"illuminate/support": "^11 || ^10 || ^9"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^11.5",
