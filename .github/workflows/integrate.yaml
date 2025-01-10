@@ -18,11 +18,11 @@ jobs:
         laravel: ["11.*", "10.*", "9.*"]
         stability: [prefer-lowest, prefer-stable]
         include:
-          - laravel: 11
+          - laravel: "11.*"
             testbench: "^9.0"
-          - laravel: 10
+          - laravel: "10.*"
             testbench: "^8.31"
-          - laravel: 9
+          - laravel: "9.*"
             testbench: "^7.50"
         exclude:
           - laravel: "11.*"
