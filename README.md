@@ -53,7 +53,7 @@ Time-aware interpolation is ideal when data points are irregularly spaced or
 influenced by time, as it accounts for the time difference between points to 
 provide more accurate interpolations in temporal contexts.
 
-> [!WARNING] Sort the collection before using time-aware interpolation.
+> [!WARNING]
 > When using time-aware interpolation, you **MUST** sort the collection in 
 > ascending order. The `sortKeys` method is a convenient way to do this
 > when the collection is keyed by timestamps.
@@ -61,10 +61,11 @@ provide more accurate interpolations in temporal contexts.
 > If your collection is not keyed by timestamps, use the `sortBy` method
 > to sort the collection by the timestamp field before calling `interpolate`.
 
-> [!NOTE] Use Carbon instances for timestamps.
-> When using time-aware interpolation, timestamps should be instances of `DateTimeInterface`.
-> This means that ou can also use Carbon instance directly, as Carbon implements the `DateTimeInterface` interface.
-
+> [!NOTE]
+> When using time-aware interpolation, timestamps should either be strings that
+> can be parsed into Carbon instances, or DateTimeInterface instances. When the
+> collection is keyed by timestamp, you MUST use strings because PHP arrays cannot
+> be indexed by DateTimeInterface instances.
 ```php
 $values = collect([
     [Carbon::parse('2025-01-01') => 1],
